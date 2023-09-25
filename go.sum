@@ -1,5 +1,3 @@
-github.com/esh2n/allcases v0.0.0-20181223212513-5a0189153dd2 h1:1rsuHohRsazbLSdyOGe7q3aLg1Vu5L4wji/3x3CSj0M=
-github.com/esh2n/allcases v0.0.0-20181223212513-5a0189153dd2/go.mod h1:OnxH28vv+gqiGhqpeI6IosFpwJRH7eIsNXMBK6yaTcY=
 github.com/google/go-cmp v0.5.2/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.5.4 h1:L8R9j+yAqZuZjsqh/z+F1NCffTKKLShY6zXTItVIZ8M=
 github.com/google/go-cmp v0.5.4/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
