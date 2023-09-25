@@ -2,7 +2,8 @@
 package main
 
 import (
-	"github.com/esh2n/allcases"
+	"allcases"
+
 	"golang.org/x/tools/go/analysis/singlechecker"
 )
 
