@@ -1,4 +1,4 @@
-module allcases
+module github.com/esh2n/allcases
 
 go 1.19
 
