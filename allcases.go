@@ -3,6 +3,7 @@ package allcases
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"go/ast"
 	"go/types"
@@ -16,10 +17,16 @@ import (
 	"golang.org/x/tools/go/ast/inspector"
 )
 
+var (
+	analyzerFlags = flag.NewFlagSet("allcases", flag.ExitOnError)
+	fixFlag       = analyzerFlags.Bool("fix", false, "apply all suggested fixes")
+)
+
 var Analyzer = &analysis.Analyzer{
 	Name:      "allcases",
 	Doc:       Doc,
 	Run:       run,
+	Flags:     *analyzerFlags,
 	Requires:  []*analysis.Analyzer{inspect.Analyzer, commentmap.Analyzer},
 	FactTypes: []analysis.Fact{new(fact)},
 }
@@ -193,6 +200,9 @@ func run(pass *analysis.Pass) (interface{}, error) {
 				unused[len(unused)-1] = "and " + unused[len(unused)-1]
 			}
 			if len(unused) > 0 {
+				if *fixFlag {
+					pass.Reportf(n.Switch, "fixed: no case of %s", strings.Join(unused, ", "))
+				}
 				pass.Reportf(n.Switch, "no case of %s", strings.Join(unused, ", "))
 			}
 		}
