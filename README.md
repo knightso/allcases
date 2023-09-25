@@ -1,4 +1,7 @@
 # allcases
+
+This Repository is forked from https://github.com/knightso/allcases
+
 `allcalses` is Go code analyzer which checks for switch statements to have all cases.
 
 # Install

@@ -9,8 +9,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/tenntenn/comment"
-	"github.com/tenntenn/comment/passes/commentmap"
+	"github.com/gostaticanalysis/comment"
+	"github.com/gostaticanalysis/comment/passes/commentmap"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"
@@ -102,6 +102,8 @@ func run(pass *analysis.Pass) (interface{}, error) {
 	inspect.Preorder([]ast.Node{(*ast.Ident)(nil)}, func(n ast.Node) {
 		switch n := n.(type) {
 		case *ast.Ident:
+
+			// check const
 			if n.Obj == nil || n.Obj.Kind != ast.Con {
 				return
 			}
@@ -124,6 +126,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 			}
 
 			f[t.String()] = append(f[t.String()], objName(o))
+
 			pass.ExportPackageFact(&f)
 		}
 	})
@@ -144,7 +147,6 @@ func run(pass *analysis.Pass) (interface{}, error) {
 				// TODO: consider this case can happen
 				break
 			}
-
 			pkg := pass.Pkg
 			tn := tv.Type.String()
 			ss := strings.SplitN(tn, ".", 2)
